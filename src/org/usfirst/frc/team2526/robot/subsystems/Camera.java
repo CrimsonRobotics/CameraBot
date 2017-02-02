@@ -15,30 +15,30 @@ public class Camera extends Subsystem {
     // here. Call these from Commands.
 
 	static NetworkTable table;
-public Camera() {
-	table.setServerMode();
-	table = NetworkTable.getTable("datatable");
-	
-	
-}
+	static Double angle;
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public static Double getCameraAngle() {
-    	while(true){
-    		try{
-    	        Thread.sleep(250);
-    	    } catch (InterruptedException ex)
-    	        {
-    	Logger.getLogger(Camera.class.getName()).log(Level.SEVERE, null, ex);
-    	        }
-    		Double angle = table.getNumber("Angle", -100000.0);
-    		return angle;
-    		}
+    public void getCameraAngle() {
+    	table = NetworkTable.getTable("datatable");
+    	while(true) {
+    	try{
+            Thread.sleep(250);
+        } catch (InterruptedException ex)
+            {
+    Logger.getLogger(Camera.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    	angle = table.getNumber("Angle", -10000.0);
     }
+    	}
+    public static Double getAngle() {
+    	return angle;
+    }
+  }
     
    
   
-}
+
 

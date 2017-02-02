@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2526.robot.commands.turnWithCamera;
+import org.usfirst.frc.team2526.robot.subsystems.Camera;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
 
@@ -25,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain driveTrain;
+	public static Camera camera;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -34,6 +35,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		camera = new Camera();
 		driveTrain = new DriveTrain();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
@@ -69,8 +71,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = new turnWithCamera();
-
+		//autonomousCommand = new turnRightWithCamera();
+			
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -79,7 +81,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-			autonomousCommand.start();
+		//	autonomousCommand.start();
 	}
 
 	/**
@@ -88,6 +90,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		
+		
 	}
 
 	@Override

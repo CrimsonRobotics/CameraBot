@@ -1,6 +1,8 @@
 package org.usfirst.frc.team2526.robot.subsystems;
 
 
+import org.usfirst.frc.team2526.robot.Robot;
+
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -35,14 +37,13 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void turnWithCamera() {
-    	angle = Camera.getCameraAngle();
-    	if(angle>1)
-    		myDrive.drive(.5, -.5);
-    	else if(angle<1)
-    			myDrive.arcadeDrive(.5,.5);
-    	else 
-    		myDrive.drive(0, 0);
-    }
+   public void turnWithCamera() {
+	   if(Robot.camera.getAngle()>1)
+		   myDrive.drive(.5, .5);
+	   else if(Robot.camera.getAngle()<-1)
+		   myDrive.drive(.5, -.5);
+	   
+   }
+   
 }
 
