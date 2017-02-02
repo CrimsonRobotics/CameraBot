@@ -38,10 +38,12 @@ public class DriveTrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
    public void turnWithCamera() {
+	   while(Robot.camera.getAngle() >1 || Robot.camera.getAngle()<-1) {
 	   if(Robot.camera.getAngle()>1)
 		   myDrive.drive(.5, .5);
 	   else if(Robot.camera.getAngle()<-1)
 		   myDrive.drive(.5, -.5);
+	   }
 	   
    }
    
