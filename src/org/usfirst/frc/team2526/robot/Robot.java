@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
+import org.usfirst.frc.team2526.robot.commands.GetAngleandTurn;
 import org.usfirst.frc.team2526.robot.subsystems.Camera;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
@@ -71,7 +72,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		//autonomousCommand = new turnRightWithCamera();
+		autonomousCommand = new GetAngleandTurn();
 			
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -81,7 +82,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		//	autonomousCommand.start();
+			autonomousCommand.start();
 	}
 
 	/**

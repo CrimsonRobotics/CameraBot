@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -31,6 +32,7 @@ public class Camera extends Subsystem {
     Logger.getLogger(Camera.class.getName()).log(Level.SEVERE, null, ex);
             }
     	angle = table.getNumber("Angle", -10000.0);
+    	SmartDashboard.putNumber("Angle", angle);
     }
     	}
     public static Double getAngle() {
