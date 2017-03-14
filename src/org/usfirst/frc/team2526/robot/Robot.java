@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team2526.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2526.robot.commands.GetAngleandTurn;
+import org.usfirst.frc.team2526.robot.commands.TurnWithCamera;
 import org.usfirst.frc.team2526.robot.subsystems.Camera;
 import org.usfirst.frc.team2526.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team2526.robot.subsystems.ExampleSubsystem;
@@ -40,9 +40,12 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
+		//NetworkTable table = new NetWorkTable
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		//SmartDashboard.putData("Auto mode", chooser);
+		//SmartDashboard.putString("Hello", "world");
 	}
+
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -52,7 +55,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledInit() {
 
-	}
+	} 
 
 	@Override
 	public void disabledPeriodic() {
@@ -72,8 +75,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = new GetAngleandTurn();
-			
+	Command auto = new TurnWithCamera();
+	auto.start();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -82,7 +85,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-			autonomousCommand.start();
+	
 	}
 
 	/**
@@ -91,6 +94,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+	/*	Command auto = new GetCameraAngle();
+		auto.start();*/
 		
 		
 	}

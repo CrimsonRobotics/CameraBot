@@ -12,6 +12,7 @@ public class TurnWithCamera extends Command {
     public TurnWithCamera() {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.driveTrain);
+       requires(Robot.camera);
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +26,7 @@ public class TurnWithCamera extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.camera.checkAngle();
     }
 
     // Called once after isFinished returns true

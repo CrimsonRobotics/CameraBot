@@ -7,6 +7,7 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +20,7 @@ public class DriveTrain extends Subsystem {
 	CANTalon frontRight;
 	CANTalon backLeft;
 	CANTalon backRight;
+	CANTalon turnMotor;
 	RobotDrive myDrive;
 	Double angle;
 	/*frontLeft = new CANTalon(9);
@@ -26,11 +28,12 @@ public class DriveTrain extends Subsystem {
 	backLeft = new CANTalon(1);
 	backRight = new CANTalon(2);*/
 	public DriveTrain() {
-		frontLeft = new CANTalon(9);
+		/*frontLeft = new CANTalon(9);
     	frontRight = new CANTalon(8);
     	backLeft = new CANTalon(1);
     	backRight = new CANTalon(2);
-		myDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		myDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);*/
+		turnMotor = new CANTalon(9);
 		
 	}
     public void initDefaultCommand() {
@@ -38,11 +41,24 @@ public class DriveTrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
    public void turnWithCamera() {
-	   while(Robot.camera.getAngle() >1 || Robot.camera.getAngle()<-1) {
-	   if(Robot.camera.getAngle()>1)
-		   myDrive.drive(.5, .5);
-	   else if(Robot.camera.getAngle()<-1)
-		   myDrive.drive(.5, -.5);
+	   double angleset = Robot.camera.getCameraAngle();
+	   System.out.println("One" + angleset);
+	   SmartDashboard.putNumber("Angle First", angleset);
+	   while(angleset>1 || angleset<-1) {
+		   angleset = Robot.camera.getCameraAngle();
+		   if(angleset != 10000.0) {
+		   System.out.println("Two" + angleset);
+	   if(angleset>1)
+		   turnMotor.set(.07);
+	//	myDrive.drive(.5, .5);
+	   else if(angleset<-1)
+		  turnMotor.set(-.07);
+		   //myDrive.drive(.5, -.5);
+	   else if(angleset >= -1 && angleset <= 1)
+		  turnMotor.set(0);
+		  // myDrive.drive(0, 0);
+		  
+	   }
 	   }
 	   
    }
